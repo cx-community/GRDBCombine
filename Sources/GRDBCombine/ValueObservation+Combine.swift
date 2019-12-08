@@ -195,7 +195,7 @@ extension DatabasePublishers {
                 if case let .observing(info) = state,
                     info.remainingDemand > .none
                 {
-                    if #available(OSX 10.12, *) {
+                    if #available(OSX 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
                         dispatchPrecondition(condition: .onQueue(info.queue))
                     } else {
                         // FIXME: Fallback on earlier versions
@@ -215,7 +215,7 @@ extension DatabasePublishers {
         private func receiveCompletionSync(_ completion: Subscribers.Completion<Error>) {
             lock.synchronized {
                 if case let .observing(info) = state {
-                    if #available(OSX 10.12, *) {
+                    if #available(OSX 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
                         dispatchPrecondition(condition: .onQueue(info.queue))
                     } else {
                         // FIXME: Fallback on earlier versions
@@ -254,7 +254,7 @@ extension ValueObservation where Reducer: ValueReducer {
             // guarantee correct ordering of values if observation
             // starts on the same queue as the queue values are
             // dispatched on.
-            if #available(OSX 10.12, *) {
+            if #available(OSX 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
                 dispatchPrecondition(condition: .onQueue(queue))
             } else {
                 // FIXME: Fallback on earlier versions

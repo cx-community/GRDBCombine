@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 
 extension Publisher where Failure == Never {
     // TODO: remove when Combine supports ships with this operator.

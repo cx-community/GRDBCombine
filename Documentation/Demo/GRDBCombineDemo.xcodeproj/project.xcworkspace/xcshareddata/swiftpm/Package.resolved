@@ -3,11 +3,29 @@
     "pins": [
       {
         "package": "CombineExpectations",
-        "repositoryURL": "https://github.com/groue/CombineExpectations.git",
+        "repositoryURL": "https://github.com/cx-community/CombineExpectations.git",
         "state": {
           "branch": null,
-          "revision": "7c13731330c370a6bc7060d8b06667faae20d605",
-          "version": "0.2.0"
+          "revision": "99dd58e3a60ce98ced038e76323ed91f80842075",
+          "version": "0.4.0"
+        }
+      },
+      {
+        "package": "CombineX",
+        "repositoryURL": "https://github.com/cx-org/CombineX",
+        "state": {
+          "branch": null,
+          "revision": "273b580b464f7d6f872cf5319c5785211443cf6f",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "CRuntime",
+        "repositoryURL": "https://github.com/wickwirew/CRuntime.git",
+        "state": {
+          "branch": null,
+          "revision": "95f911318d8c885f6fc05e971471f94adfd39405",
+          "version": "2.1.2"
         }
       },
       {
@@ -17,6 +35,33 @@
           "branch": null,
           "revision": "a67070dd9a08dad455e9f2895a0c40921d31fa1c",
           "version": "4.6.2"
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "state": {
+          "branch": null,
+          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
+          "version": "8.0.2"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick.git",
+        "state": {
+          "branch": null,
+          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
+          "version": "2.2.0"
+        }
+      },
+      {
+        "package": "Runtime",
+        "repositoryURL": "https://github.com/wickwirew/Runtime.git",
+        "state": {
+          "branch": null,
+          "revision": "61c9776f47d2951bdc562486ad348e5e1ca2e180",
+          "version": "2.1.1"
         }
       }
     ]

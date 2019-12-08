@@ -68,7 +68,7 @@ public func assertFailure<Failure, ExpectedFailure>(
 }
 
 func dispatchPreconditionOnQueue(_ queue: @autoclosure () -> DispatchQueue) {
-    if #available(OSX 10.12, *) {
+    if #available(OSX 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
         dispatchPrecondition(condition: .onQueue(queue()))
     } else {
         // FIXME: Fallback on earlier versions

@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import GRDBCombine
 
 class HallOfFameViewModel {

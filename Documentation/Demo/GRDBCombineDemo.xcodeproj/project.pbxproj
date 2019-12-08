@@ -557,10 +557,10 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		5686F937238AD2D500FEF9D9 /* XCRemoteSwiftPackageReference "CombineExpectations" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/groue/CombineExpectations.git";
+			repositoryURL = "https://github.com/cx-community/CombineExpectations.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.2.0;
+				version = 0.4.0;
 			};
 		};
 		56B28CF922BA0D8900E65640 /* XCRemoteSwiftPackageReference "GRDB" */ = {
@@ -573,7 +573,7 @@
 		};
 		56DF378C22A9964900166718 /* XCRemoteSwiftPackageReference "GRDBCombine" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/groue/GRDBCombine";
+			repositoryURL = "https://github.com/cx-community/GRDBCombine";
 			requirement = {
 				branch = master;
 				kind = branch;
