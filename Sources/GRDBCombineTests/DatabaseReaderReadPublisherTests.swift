@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import CombineExpectations
 import GRDB
 import GRDBCombine
@@ -83,11 +83,11 @@ class DatabaseReaderReadPublisherTests : XCTestCase {
                 })
                 .sink(
                     receiveCompletion: { completion in
-                        dispatchPrecondition(condition: .onQueue(.main))
+                        dispatchPreconditionOnQueue(.main)
                         expectation.fulfill()
                 },
                     receiveValue: { _ in
-                        dispatchPrecondition(condition: .onQueue(.main))
+                        dispatchPreconditionOnQueue(.main)
                 })
             
             waitForExpectations(timeout: 1, handler: nil)
@@ -113,16 +113,16 @@ class DatabaseReaderReadPublisherTests : XCTestCase {
             let queue = DispatchQueue(label: "test")
             let expectation = self.expectation(description: "")
             let testCancellable = reader
-                .readPublisher(receiveOn: queue, value: { db in
+                .readPublisher(receiveOn: queue.cx, value: { db in
                     try Player.fetchCount(db)
                 })
                 .sink(
                     receiveCompletion: { completion in
-                        dispatchPrecondition(condition: .onQueue(queue))
+                        dispatchPreconditionOnQueue(queue)
                         expectation.fulfill()
                 },
                     receiveValue: { _ in
-                        dispatchPrecondition(condition: .onQueue(queue))
+                        dispatchPreconditionOnQueue(queue)
                 })
             
             waitForExpectations(timeout: 1, handler: nil)

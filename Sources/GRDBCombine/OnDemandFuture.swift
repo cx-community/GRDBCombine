@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import Foundation
 
 /// A publisher that eventually produces one value and then finishes or fails.

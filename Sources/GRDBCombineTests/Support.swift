@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import Foundation
 import XCTest
 
@@ -64,5 +64,13 @@ public func assertFailure<Failure, ExpectedFailure>(
         test(expectedError)
     } else {
         XCTFail("Expected \(ExpectedFailure.self), got \(completion)", file: file, line: line)
+    }
+}
+
+func dispatchPreconditionOnQueue(_ queue: @autoclosure () -> DispatchQueue) {
+    if #available(OSX 10.12, *) {
+        dispatchPrecondition(condition: .onQueue(queue()))
+    } else {
+        // FIXME: Fallback on earlier versions
     }
 }

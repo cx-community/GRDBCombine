@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import CombineExpectations
 import GRDB
 import GRDBCombine
@@ -107,11 +107,11 @@ class DatabaseWriterWritePublisherTests : XCTestCase {
                 })
                 .sink(
                     receiveCompletion: { completion in
-                        dispatchPrecondition(condition: .onQueue(.main))
+                        dispatchPreconditionOnQueue(.main)
                         expectation.fulfill()
                 },
                     receiveValue: { _ in
-                        dispatchPrecondition(condition: .onQueue(.main))
+                        dispatchPreconditionOnQueue(.main)
                         expectation.fulfill()
                 })
             
@@ -138,16 +138,16 @@ class DatabaseWriterWritePublisherTests : XCTestCase {
             let expectation = self.expectation(description: "")
             expectation.expectedFulfillmentCount = 2 // value + completion
             let testCancellable = writer
-                .writePublisher(receiveOn: queue, updates: { db in
+                .writePublisher(receiveOn: queue.cx, updates: { db in
                     try Player(id: 1, name: "Arthur", score: 1000).insert(db)
                 })
                 .sink(
                     receiveCompletion: { completion in
-                        dispatchPrecondition(condition: .onQueue(queue))
+                        dispatchPreconditionOnQueue(queue)
                         expectation.fulfill()
                 },
                     receiveValue: { _ in
-                        dispatchPrecondition(condition: .onQueue(queue))
+                        dispatchPreconditionOnQueue(queue)
                         expectation.fulfill()
                 })
             

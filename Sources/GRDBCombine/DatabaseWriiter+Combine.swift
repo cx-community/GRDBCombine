@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import Dispatch
 import GRDB
 
@@ -19,7 +19,7 @@ extension DatabaseWriter {
         updates: @escaping (Database) throws -> Output)
         -> AnyPublisher<Output, Error>
     {
-        writePublisher(receiveOn: DispatchQueue.main, updates: updates)
+        writePublisher(receiveOn: DispatchQueue.main.cx, updates: updates)
     }
     
     /// Returns a Publisher that asynchronously writes into the database.
@@ -43,7 +43,7 @@ extension DatabaseWriter {
         where S : Scheduler
     {
         flatMapWritePublisher(receiveOn: scheduler) { db in
-            Result(catching: { try updates(db) }).publisher
+            Result(catching: { try updates(db) }).cx.publisher
         }
     }
     
@@ -63,7 +63,7 @@ extension DatabaseWriter {
         thenRead value: @escaping (Database, T) throws -> Output)
         -> AnyPublisher<Output, Error>
     {
-        writePublisher(receiveOn: DispatchQueue.main, updates: updates, thenRead: value)
+        writePublisher(receiveOn: DispatchQueue.main.cx, updates: updates, thenRead: value)
     }
     
     

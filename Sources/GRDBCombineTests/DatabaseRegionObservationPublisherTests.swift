@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import CombineExpectations
 import GRDB
 import GRDBCombine

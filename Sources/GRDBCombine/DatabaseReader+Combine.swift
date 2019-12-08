@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import Dispatch
 import Foundation
 import GRDB
@@ -19,7 +19,7 @@ extension DatabaseReader {
         value: @escaping (Database) throws -> Output)
         -> AnyPublisher<Output, Error>
     {
-        readPublisher(receiveOn: DispatchQueue.main, value: value)
+        readPublisher(receiveOn: DispatchQueue.main.cx, value: value)
     }
     
     /// Returns a Publisher that asynchronously completes with a fetched value.

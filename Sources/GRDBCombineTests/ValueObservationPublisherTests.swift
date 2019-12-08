@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import CombineExpectations
 import GRDB
 import GRDBCombine
@@ -63,13 +63,13 @@ class ValueObservationPublisherTests : XCTestCase {
             let testSubject = PassthroughSubject<Int, Error>()
             let testCancellable = testSubject
                 .handleEvents(receiveOutput: { _ in
-                    dispatchPrecondition(condition: .onQueue(.main))
+                    dispatchPreconditionOnQueue(.main)
                 })
                 .collect(2)
                 .sink(
                     receiveCompletion: { completion in
                         assertNoFailure(completion)
-                        dispatchPrecondition(condition: .onQueue(.main))
+                        dispatchPreconditionOnQueue(.main)
                 },
                     receiveValue: { value in
                         // 2 = test for initial value + changed value
@@ -178,13 +178,13 @@ class ValueObservationPublisherTests : XCTestCase {
             let testSubject = PassthroughSubject<Int, Error>()
             let testCancellable = testSubject
                 .handleEvents(receiveOutput: { _ in
-                    dispatchPrecondition(condition: .onQueue(.main))
+                    dispatchPreconditionOnQueue(.main)
                 })
                 .collect(2)
                 .sink(
                     receiveCompletion: { completion in
                         assertNoFailure(completion)
-                        dispatchPrecondition(condition: .onQueue(.main))
+                        dispatchPreconditionOnQueue(.main)
                 },
                     receiveValue: { value in
                         // 2 = test for initial value + changed value
@@ -226,7 +226,7 @@ class ValueObservationPublisherTests : XCTestCase {
                 .sink(
                     receiveCompletion: { _ in },
                     receiveValue: { _ in
-                        dispatchPrecondition(condition: .onQueue(.main))
+                        dispatchPreconditionOnQueue(.main)
                         semaphore.signal()
                 })
             

@@ -1,4 +1,4 @@
-import Combine
+import CXShim
 import Foundation
 import GRDB
 
@@ -195,7 +195,11 @@ extension DatabasePublishers {
                 if case let .observing(info) = state,
                     info.remainingDemand > .none
                 {
-                    dispatchPrecondition(condition: .onQueue(info.queue))
+                    if #available(OSX 10.12, *) {
+                        dispatchPrecondition(condition: .onQueue(info.queue))
+                    } else {
+                        // FIXME: Fallback on earlier versions
+                    }
                     let additionalDemand = info.downstream.receive(value)
                     if case var .observing(info) = state {
                         info.remainingDemand += additionalDemand
@@ -211,7 +215,11 @@ extension DatabasePublishers {
         private func receiveCompletionSync(_ completion: Subscribers.Completion<Error>) {
             lock.synchronized {
                 if case let .observing(info) = state {
-                    dispatchPrecondition(condition: .onQueue(info.queue))
+                    if #available(OSX 10.12, *) {
+                        dispatchPrecondition(condition: .onQueue(info.queue))
+                    } else {
+                        // FIXME: Fallback on earlier versions
+                    }
                     observer = nil
                     state = .finished
                     info.downstream.receive(completion: completion)
@@ -246,7 +254,11 @@ extension ValueObservation where Reducer: ValueReducer {
             // guarantee correct ordering of values if observation
             // starts on the same queue as the queue values are
             // dispatched on.
-            dispatchPrecondition(condition: .onQueue(queue))
+            if #available(OSX 10.12, *) {
+                dispatchPrecondition(condition: .onQueue(queue))
+            } else {
+                // FIXME: Fallback on earlier versions
+            }
             scheduledObservation.scheduling = .unsafe(startImmediately: true)
         } else {
             scheduledObservation.scheduling = .async(onQueue: queue, startImmediately: true)
