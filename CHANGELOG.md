@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 
 #### 0.x Releases
 
+- [0.7.1](#071)
 - [0.7.0](#070)
 - [0.6.0](#060)
 - [0.5.0](#050)
@@ -14,6 +15,12 @@ All notable changes to this project will be documented in this file.
 - [0.1.1](#011)
 - [0.1.0](#010)
 
+
+## 0.7.1
+
+Released December 10, 2019
+
+- [#27](https://github.com/groue/GRDBCombine/pull/27) by [@groue](http://github.com/groue): Fix error handling of asynchronous writes
 
 ## 0.7.0
 
